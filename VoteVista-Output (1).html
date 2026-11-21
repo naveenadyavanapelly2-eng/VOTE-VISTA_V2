@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteVista | CampusVote Shield</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #f5f6fc;
+    --card: #ffffff;
+    --text: #191a2e;
+    --muted: #85879b;
+    --primary: #7557f6;
+    --border: #ececf4;
+    --sidebar: #17172c;
+}
+
+body.dark {
+    --bg: #111222;
+    --card: #1c1d32;
+    --text: #f5f5ff;
+    --muted: #a1a2b8;
+    --border: #303149;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+button, input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    display: flex;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background: var(--sidebar);
+    padding: 30px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 55px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #a58bff, #6745ed);
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.brand h2 {
+    font-size: 19px;
+}
+
+.brand small {
+    color: #aaa9c6;
+    font-size: 10px;
+}
+
+.menu-title {
+    color: #77768f;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-link {
+    background: transparent;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    color: #aaa9c5;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: linear-gradient(100deg, #7658f6, #6143d9);
+    color: white;
+}
+
+.theme-btn {
+    margin-top: auto;
+    padding: 13px;
+    background: transparent;
+    border: 1px solid #3b3a53;
+    color: white;
+    border-radius: 9px;
+}
+
+/* MAIN */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 30px 40px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.topbar h1 {
+    font-size: 27px;
+    margin-top: 7px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #e8e0ff;
+    color: #704fe8;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+}
+
+/* PAGES */
+
+.page {
+    display: none;
+    animation: appear 0.4s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HERO */
+
+.hero {
+    min-height: 280px;
+    border-radius: 20px;
+    padding: 40px;
+    color: white;
+    background: linear-gradient(115deg, #211b50, #6345c9, #987bfa);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-tag {
+    font-size: 10px;
+    color: #d2c8ff;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin: 18px 0;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 12px;
+    color: #d4d0f1;
+    margin-bottom: 22px;
+}
+
+.hero-art {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: float 3s infinite ease-in-out;
+}
+
+.hero-circle {
+    width: 65px;
+    height: 65px;
+    background: #8fe9c2;
+    color: #186f51;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.hero-art h3 {
+    font-size: 14px;
+}
+
+.hero-art p {
+    margin: 5px;
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* BUTTONS */
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #6042e8;
+    transform: translateY(-3px);
+}
+
+.hero .primary-btn {
+    background: white;
+    color: #6345d5;
+}
+
+/* HEADINGS */
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 32px 0 18px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+}
+
+.section-heading p,
+.page-heading p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+.live {
+    color: #24b987;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.page-heading {
+    margin: 15px 0 25px;
+}
+
+.page-heading h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+/* CARDS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.stat-card,
+.panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 10px 35px rgba(30,25,80,0.04);
+}
+
+.stat-card span {
+    display: block;
+    font-size: 22px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.stat-card p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.stat-card h2 {
+    margin-top: 9px;
+    font-size: 27px;
+}
+
+.open {
+    color: #24b987;
+}
+
+.panel h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.position {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.position:last-child {
+    border: none;
+}
+
+.position > span {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background: var(--bg);
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+.position h3 {
+    font-size: 13px;
+}
+
+.position p {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.position button {
+    margin-left: auto;
+    color: var(--primary);
+    border: none;
+    background: transparent;
+    font-weight: 700;
+}
+
+/* INPUTS */
+
+input {
+    width: 100%;
+    padding: 13px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    margin: 8px 0;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
+.login-form {
+    display: flex;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.panel > p,
+.panel small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* CANDIDATES */
+
+.race-heading {
+    margin: 35px 0 17px;
+}
+
+.race-heading h2 {
+    font-size: 19px;
+}
+
+.race-heading p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.candidate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.candidate-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.candidate-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(40,30,100,0.08);
+}
+
+.candidate-card.selected {
+    border: 2px solid var(--primary);
+}
+
+.candidate-top {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.candidate-avatar {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #ded4ff, #9e83fa);
+    color: #5332b8;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.candidate-top h3 {
+    font-size: 13px;
+}
+
+.candidate-top p {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.candidate-card > p {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 17px 0;
+}
+
+.select-btn {
+    width: 100%;
+    background: var(--bg);
+    color: var(--primary);
+    border: 1px solid var(--border);
+    padding: 11px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.selected .select-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.submit-btn {
+    margin-top: 25px;
+}
+
+.note {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+/* RESULTS */
+
+.result-race {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 23px;
+    margin: 20px 0;
+}
+
+.result-race h3 {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.result-row {
+    margin: 16px 0;
+}
+
+.result-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.result-info span {
+    color: var(--muted);
+}
+
+.result-track,
+.progress {
+    width: 100%;
+    height: 9px;
+    background: var(--bg);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.result-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7658f6, #b49cff);
+    transition: width 1s;
+}
+
+.progress div {
+    width: 72%;
+    height: 100%;
+    background: #24b987;
+    border-radius: 20px;
+}
+
+.progress {
+    margin: 15px 0;
+}
+
+/* POLLS */
+
+#pollList {
+    margin-top: 20px;
+}
+
+.poll-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 15px;
+}
+
+.poll-card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.poll-card small {
+    color: var(--muted);
+}
+
+.poll-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    padding: 13px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+.poll-option button {
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.poll-option button:disabled {
+    color: var(--muted);
+}
+
+/* RECEIPT */
+
+.receipt {
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #dff8ed;
+    color: #20b77d;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+}
+
+.receipt-details {
+    text-align: left;
+    margin: 25px 0;
+}
+
+.receipt-details p {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+}
+
+.receipt-details strong {
+    color: var(--text);
+}
+
+.hash {
+    overflow-wrap: anywhere;
+    background: var(--bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 10px;
+    padding: 35px 0 10px;
+}
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #24213e;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 10px;
+    font-size: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+    .sidebar {
+        width: 65px;
+        padding: 20px 8px;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .brand div:last-child,
+    .menu-title,
+    .nav-link {
+        font-size: 0;
+    }
+
+    .nav-link {
+        text-align: center;
+    }
+
+    .main-content {
+        margin-left: 65px;
+        width: calc(100% - 65px);
+        padding: 20px 12px;
+    }
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero h2 {
+        font-size: 27px;
+    }
+
+    .hero-art {
+        display: none;
+    }
+
+    .candidate-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 450px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .login-form {
+        flex-direction: column;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="logo">V</div>
+            <div>
+                <h2>VoteVista</h2>
+                <small>CampusVote Shield</small>
+            </div>
+        </div>
+
+        <p class="menu-title">MAIN MENU</p>
+
+        <nav>
+            <button class="nav-link active" data-page="dashboard">▦ Dashboard</button>
+            <button class="nav-link" data-page="vote">✓ Cast Your Vote</button>
+            <button class="nav-link" data-page="results">▥ Live Results</button>
+            <button class="nav-link" data-page="polls">☷ Community Polls</button>
+            <button class="nav-link" data-page="receipt">▤ Vote Receipt</button>
+        </nav>
+
+        <button id="themeToggle" class="theme-btn">☾ Dark Mode</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">CAMPUS ELECTION 2026</p>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+
+            <div class="profile">
+                <span id="studentDisplay">Guest Student</span>
+                <div class="avatar">G</div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section class="page active" id="dashboard">
+            <div class="hero">
+                <div>
+                    <span class="hero-tag">YOUR VOICE. YOUR FUTURE.</span>
+                    <h2>Make Your Voice<br>Count on Campus.</h2>
+                    <p>Choose your leaders. Shape your campus. Be part of the change.</p>
+                    <button class="primary-btn" onclick="showPage('vote')">Start Voting →</button>
+                </div>
+
+                <div class="hero-art">
+                    <div class="hero-circle">✓</div>
+                    <h3>Your Vote Matters</h3>
+                    <p>Every Vote Counts</p>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Election Overview</h2>
+                    <p>Explore campus election activities.</p>
+                </div>
+                <span class="live">● DEMO LIVE</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>♙</span>
+                    <p>Total Candidates</p>
+                    <h2>08</h2>
+                </div>
+                <div class="stat-card">
+                    <span>✓</span>
+                    <p>Total Votes</p>
+                    <h2 id="totalVotes">120</h2>
+                </div>
+                <div class="stat-card">
+                    <span>▣</span>
+                    <p>Election Positions</p>
+                    <h2>03</h2>
+                </div>
+                <div class="stat-card">
+                    <span>◷</span>
+                    <p>Election Status</p>
+                    <h2 class="open">Open</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Election Positions</h2>
+                <div class="position">
+                    <span>👑</span>
+                    <div><h3>College President</h3><p>4 Candidates</p></div>
+                    <button onclick="showPage('vote')">View →</button>
+                </div>
+                <div class="position">
+                    <span>🎓</span>
+                    <div><h3>Vice President</h3><p>2 Candidates</p></div>
+                    <button onclick="showPage('vote')">View →</button>
+                </div>
+                <div class="position">
+                    <span>🏆</span>
+                    <div><h3>Sports Secretary</h3><p>2 Candidates</p></div>
+                    <button onclick="showPage('vote')">View →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOTING -->
+        <section class="page" id="vote">
+            <div class="page-heading">
+                <h2>Cast Your Vote</h2>
+                <p>Select your favourite candidate for each position.</p>
+            </div>
+
+            <div class="panel">
+                <h3>Student Demo Verification</h3>
+                <p>Enter your roll number to start the demo.</p>
+                <div class="login-form">
+                    <input type="text" id="rollNumber" placeholder="Enter your roll number">
+                    <button class="primary-btn" id="loginBtn">Verify Student</button>
+                </div>
+                <small id="loginMessage">Frontend demonstration only.</small>
+            </div>
+
+            <div id="votingArea">
+                <div class="race-heading"><h2>01. College President</h2><p>Select one candidate.</p></div>
+                <div class="candidate-grid" id="presidentCandidates"></div>
+                <div class="race-heading"><h2>02. Vice President</h2><p>Select one candidate.</p></div>
+                <div class="candidate-grid" id="viceCandidates"></div>
+                <div class="race-heading"><h2>03. Sports Secretary</h2><p>Select one candidate.</p></div>
+                <div class="candidate-grid" id="sportsCandidates"></div>
+                <button class="primary-btn submit-btn" id="submitVote">Submit My Votes →</button>
+                <p class="note">Demo voting only. Not suitable for a real election.</p>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="page" id="results">
+            <div class="page-heading">
+                <h2>Live Election Results</h2>
+                <p>View candidate vote counts and percentages.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><p>Total Votes</p><h2 id="resultTotal">120</h2></div>
+                <div class="stat-card"><p>Positions</p><h2>03</h2></div>
+                <div class="stat-card"><p>Candidates</p><h2>08</h2></div>
+            </div>
+            <div id="resultsContainer"></div>
+            <div class="panel">
+                <h3>Campus Turnout</h3>
+                <div class="progress"><div></div></div>
+                <h2>72%</h2>
+            </div>
+        </section>
+
+        <!-- COMMUNITY POLLS -->
+        <section class="page" id="polls">
+            <div class="page-heading">
+                <h2>Community Polls</h2>
+                <p>Create polls and collect student opinions.</p>
+            </div>
+            <div class="panel">
+                <h3>Create a New Poll</h3>
+                <input id="pollQuestion" placeholder="Enter poll question">
+                <input id="optionOne" placeholder="Option 1">
+                <input id="optionTwo" placeholder="Option 2">
+                <label>Closing date</label>
+                <input type="datetime-local" id="pollDeadline">
+                <button class="primary-btn" id="createPoll">Create Poll +</button>
+            </div>
+            <div id="pollList"></div>
+        </section>
+
+        <!-- RECEIPT -->
+        <section class="page" id="receipt">
+            <div class="page-heading">
+                <h2>My Vote Receipt</h2>
+                <p>View your latest demo voting confirmation.</p>
+            </div>
+            <div class="panel receipt">
+                <div class="success-icon">✓</div>
+                <h2>Vote Receipt</h2>
+                <div class="receipt-details">
+                    <p>Student ID <strong id="receiptStudent">Not available</strong></p>
+                    <p>Status <strong id="receiptStatus">Not submitted</strong></p>
+                    <p>Time <strong id="receiptTime">—</strong></p>
+                    <p>Receipt ID <strong id="receiptId">—</strong></p>
+                </div>
+                <h4>SHA-256 Demo Hash</h4>
+                <p class="hash" id="receiptHash">Your hash will appear here.</p>
+                <small>This is a demonstration receipt.</small>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 VoteVista | CampusVote Shield</p>
+            <p>Transparent Campus Elections</p>
+        </footer>
+    </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+    <script>
+// ======================================
+// VOTEVISTA - FRONTEND JAVASCRIPT
+// ======================================
+
+// CANDIDATE DATA
+
+const races = [
+    {
+        id: "president",
+        name: "College President",
+        container: "presidentCandidates",
+        candidates: [
+            {
+                id: "p1",
+                name: "Aarav Sharma",
+                department: "Computer Science",
+                symbol: "A",
+                manifesto: "Promote student innovation and improve campus facilities.",
+                votes: 25
+            },
+            {
+                id: "p2",
+                name: "Priya Reddy",
+                department: "Electronics",
+                symbol: "P",
+                manifesto: "Focus on student welfare and inclusive campus activities.",
+                votes: 20
+            },
+            {
+                id: "p3",
+                name: "Rahul Kumar",
+                department: "Mechanical",
+                symbol: "R",
+                manifesto: "Improve sports facilities and support student clubs.",
+                votes: 18
+            },
+            {
+                id: "p4",
+                name: "Sneha Patel",
+                department: "Information Technology",
+                symbol: "S",
+                manifesto: "Build a creative campus with more technical events.",
+                votes: 17
+            }
+        ]
+    },
+
+    {
+        id: "vice",
+        name: "Vice President",
+        container: "viceCandidates",
+        candidates: [
+            {
+                id: "v1",
+                name: "Arjun Verma",
+                department: "Computer Science",
+                symbol: "A",
+                manifesto: "Improve student coordination and academic collaboration.",
+                votes: 15
+            },
+            {
+                id: "v2",
+                name: "Meera Nair",
+                department: "Civil Engineering",
+                symbol: "M",
+                manifesto: "Create a welcoming environment for all students.",
+                votes: 25
+            }
+        ]
+    },
+
+    {
+        id: "sports",
+        name: "Sports Secretary",
+        container: "sportsCandidates",
+        candidates: [
+            {
+                id: "s1",
+                name: "Kiran Das",
+                department: "Mechanical",
+                symbol: "K",
+                manifesto: "Organize sports tournaments and campus activities.",
+                votes: 12
+            },
+            {
+                id: "s2",
+                name: "Ananya Rao",
+                department: "Computer Science",
+                symbol: "A",
+                manifesto: "Encourage fitness, teamwork and sports participation.",
+                votes: 8
+            }
+        ]
+    }
+];
+
+
+// APPLICATION DATA
+
+let currentStudent = "";
+let selections = {};
+
+let submitted = JSON.parse(
+    localStorage.getItem("submittedRaces") || "{}"
+);
+
+let receipt = JSON.parse(
+    localStorage.getItem("voteReceipt") || "null"
+);
+
+let polls = JSON.parse(
+    localStorage.getItem("campusPolls") || "null"
+) || [];
+
+
+// NAVIGATION
+
+const titles = {
+    dashboard: "Dashboard",
+    vote: "Cast Your Vote",
+    results: "Live Results",
+    polls: "Community Polls",
+    receipt: "Vote Receipt"
+};
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.querySelectorAll(".nav-link").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    const nav = document.querySelector(
+        `[data-page="${pageId}"]`
+    );
+
+    if (nav) nav.classList.add("active");
+
+    document.getElementById("pageTitle").textContent =
+        titles[pageId];
+
+    if (pageId === "results") renderResults();
+    if (pageId === "polls") renderPolls();
+    if (pageId === "receipt") renderReceipt();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll(".nav-link").forEach(button => {
+    button.addEventListener("click", () => {
+        showPage(button.dataset.page);
+    });
+});
+
+
+// TOAST MESSAGE
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+
+// STUDENT DEMO LOGIN
+
+document.getElementById("loginBtn").addEventListener("click", () => {
+
+    const roll = document.getElementById("rollNumber")
+        .value.trim();
+
+    if (roll.length < 3) {
+        showToast("Enter a valid demo roll number.");
+        return;
+    }
+
+    currentStudent = roll.toUpperCase();
+
+    sessionStorage.setItem("currentStudent", currentStudent);
+
+    document.getElementById("studentDisplay").textContent =
+        currentStudent;
+
+    document.getElementById("loginMessage").textContent =
+        "Demo session active: " + currentStudent;
+
+    showToast("Student demo session started!");
+});
+
+
+// RESTORE STUDENT SESSION
+
+const savedStudent = sessionStorage.getItem("currentStudent");
+
+if (savedStudent) {
+
+    currentStudent = savedStudent;
+
+    document.getElementById("studentDisplay").textContent =
+        savedStudent;
+
+    document.getElementById("rollNumber").value =
+        savedStudent;
+
+    document.getElementById("loginMessage").textContent =
+        "Demo session active.";
+}
+
+
+// RENDER CANDIDATES
+
+function renderCandidates() {
+
+    races.forEach(race => {
+
+        const container = document.getElementById(race.container);
+
+        container.innerHTML = "";
+
+        race.candidates.forEach(candidate => {
+
+            const selected =
+                selections[race.id] === candidate.id;
+
+            const card = document.createElement("div");
+
+            card.className = "candidate-card";
+
+            if (selected) {
+                card.classList.add("selected");
+            }
+
+            card.innerHTML = `
+                <div class="candidate-top">
+                    <div class="candidate-avatar">
+                        ${candidate.symbol}
+                    </div>
+
+                    <div>
+                        <h3>${candidate.name}</h3>
+                        <p>${candidate.department}</p>
+                    </div>
+                </div>
+
+                <p>${candidate.manifesto}</p>
+
+                <button class="select-btn">
+                    ${selected ? "✓ Selected" : "Select Candidate"}
+                </button>
+            `;
+
+            card.querySelector("button").addEventListener(
+                "click",
+                () => selectCandidate(race.id, candidate.id)
+            );
+
+            container.appendChild(card);
+        });
+    });
+}
+
+
+// SELECT CANDIDATE
+
+function selectCandidate(raceId, candidateId) {
+
+    if (!currentStudent) {
+        showToast("Verify your student demo session first.");
+        return;
+    }
+
+    const key = currentStudent + "_" + raceId;
+
+    if (submitted[key]) {
+        showToast("You have already submitted this race.");
+        return;
+    }
+
+    selections[raceId] = candidateId;
+
+    renderCandidates();
+}
+
+
+// SUBMIT VOTES
+
+document.getElementById("submitVote")
+    .addEventListener("click", async () => {
+
+        if (!currentStudent) {
+            showToast("Please verify your demo session.");
+            return;
+        }
+
+        if (Object.keys(selections).length !== races.length) {
+            showToast("Select a candidate for all three positions.");
+            return;
+        }
+
+        const alreadyVoted = races.some(race => {
+            return submitted[currentStudent + "_" + race.id];
+        });
+
+        if (alreadyVoted) {
+            showToast("Demo votes already submitted.");
+            return;
+        }
+
+        // UPDATE VOTES
+
+        races.forEach(race => {
+
+            const selectedId = selections[race.id];
+
+            const candidate = race.candidates.find(
+                item => item.id === selectedId
+            );
+
+            candidate.votes++;
+
+            submitted[currentStudent + "_" + race.id] = true;
+        });
+
+        localStorage.setItem(
+            "submittedRaces",
+            JSON.stringify(submitted)
+        );
+
+        localStorage.setItem(
+            "electionResults",
+            JSON.stringify(races)
+        );
+
+        // CREATE RECEIPT
+
+        const receiptData = {
+            student: currentStudent,
+            id: "VV-" + Date.now(),
+            time: new Date().toLocaleString(),
+            selections: selections
+        };
+
+        const hash = await generateHash(
+            JSON.stringify(receiptData)
+        );
+
+        receipt = {
+            ...receiptData,
+            hash: hash
+        };
+
+        localStorage.setItem(
+            "voteReceipt",
+            JSON.stringify(receipt)
+        );
+
+        selections = {};
+
+        renderCandidates();
+        updateTotalVotes();
+
+        showToast("Demo votes submitted successfully!");
+
+        showPage("receipt");
+    });
+
+
+// SHA-256 DEMO HASH
+
+async function generateHash(text) {
+
+    if (!crypto.subtle) {
+        return "SHA-256 is unavailable in this browser.";
+    }
+
+    const data = new TextEncoder().encode(text);
+
+    const hashBuffer = await crypto.subtle.digest(
+        "SHA-256",
+        data
+    );
+
+    return Array.from(new Uint8Array(hashBuffer))
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+}
+
+
+// LOAD SAVED RESULTS
+
+function loadResults() {
+
+    const saved = JSON.parse(
+        localStorage.getItem("electionResults") || "null"
+    );
+
+    if (!saved) return;
+
+    saved.forEach(savedRace => {
+
+        const race = races.find(
+            item => item.id === savedRace.id
+        );
+
+        if (race) {
+            race.candidates = savedRace.candidates;
+        }
+    });
+}
+
+
+// RESULTS
+
+function renderResults() {
+
+    const container =
+        document.getElementById("resultsContainer");
+
+    container.innerHTML = "";
+
+    let totalVotes = 0;
+
+    races.forEach(race => {
+
+        const raceTotal = race.candidates.reduce(
+            (sum, candidate) => sum + candidate.votes,
+            0
+        );
+
+        totalVotes += raceTotal;
+
+        const section = document.createElement("div");
+
+        section.className = "result-race";
+
+        section.innerHTML = `<h3>${race.name}</h3>`;
+
+        race.candidates.forEach(candidate => {
+
+            const percentage = raceTotal
+                ? candidate.votes / raceTotal * 100
+                : 0;
+
+            const row = document.createElement("div");
+
+            row.className = "result-row";
+
+            row.innerHTML = `
+                <div class="result-info">
+                    <strong>${candidate.name}</strong>
+                    <span>
+                        ${candidate.votes} votes ·
+                        ${percentage.toFixed(1)}%
+                    </span>
+                </div>
+
+                <div class="result-track">
+                    <div class="result-fill"
+                         style="width:${percentage}%">
+                    </div>
+                </div>
+            `;
+
+            section.appendChild(row);
+        });
+
+        container.appendChild(section);
+    });
+
+    document.getElementById("resultTotal").textContent =
+        totalVotes;
+}
+
+
+// TOTAL VOTES
+
+function updateTotalVotes() {
+
+    const total = races.reduce((sum, race) => {
+
+        return sum + race.candidates.reduce(
+            (raceSum, candidate) =>
+                raceSum + candidate.votes,
+            0
+        );
+
+    }, 0);
+
+    document.getElementById("totalVotes").textContent =
+        total;
+}
+
+
+// RECEIPT
+
+function renderReceipt() {
+
+    receipt = JSON.parse(
+        localStorage.getItem("voteReceipt") || "null"
+    );
+
+    if (!receipt) return;
+
+    document.getElementById("receiptStudent").textContent =
+        receipt.student;
+
+    document.getElementById("receiptStatus").textContent =
+        "Demo Submitted";
+
+    document.getElementById("receiptTime").textContent =
+        receipt.time;
+
+    document.getElementById("receiptId").textContent =
+        receipt.id;
+
+    document.getElementById("receiptHash").textContent =
+        receipt.hash;
+}
+
+
+// CREATE COMMUNITY POLL
+
+document.getElementById("createPoll")
+    .addEventListener("click", () => {
+
+        const question =
+            document.getElementById("pollQuestion").value.trim();
+
+        const optionOne =
+            document.getElementById("optionOne").value.trim();
+
+        const optionTwo =
+            document.getElementById("optionTwo").value.trim();
+
+        const deadline =
+            document.getElementById("pollDeadline").value;
+
+        if (!question || !optionOne || !optionTwo) {
+            showToast("Fill in all poll details.");
+            return;
+        }
+
+        if (deadline && new Date(deadline) <= new Date()) {
+            showToast("Choose a future closing date.");
+            return;
+        }
+
+        polls.unshift({
+            id: Date.now(),
+            question: question,
+            options: [
+                { name: optionOne, votes: 0 },
+                { name: optionTwo, votes: 0 }
+            ],
+            deadline: deadline,
+            voted: false
+        });
+
+        savePolls();
+        renderPolls();
+
+        document.getElementById("pollQuestion").value = "";
+        document.getElementById("optionOne").value = "";
+        document.getElementById("optionTwo").value = "";
+        document.getElementById("pollDeadline").value = "";
+
+        showToast("Community poll created!");
+    });
+
+
+// SAVE POLLS
+
+function savePolls() {
+    localStorage.setItem(
+        "campusPolls",
+        JSON.stringify(polls)
+    );
+}
+
+
+// DISPLAY POLLS
+
+function renderPolls() {
+
+    const container = document.getElementById("pollList");
+
+    container.innerHTML = "";
+
+    polls.forEach(poll => {
+
+        const expired = poll.deadline &&
+            new Date(poll.deadline) <= new Date();
+
+        const card = document.createElement("div");
+
+        card.className = "poll-card";
+
+        card.innerHTML = `
+            <h3>${poll.question}</h3>
+            <small>
+                ${expired ? "Poll closed" : "Community poll"}
+            </small>
+        `;
+
+        poll.options.forEach((option, index) => {
+
+            const row = document.createElement("div");
+
+            row.className = "poll-option";
+
+            const text = document.createElement("span");
+            text.textContent =
+                `${option.name} · ${option.votes} votes`;
+
+            const button = document.createElement("button");
+
+            button.textContent = poll.voted
+                ? "Voted"
+                : expired ? "Closed" : "Vote";
+
+            button.disabled = poll.voted || expired;
+
+            button.addEventListener("click", () => {
+
+                if (poll.voted || expired) return;
+
+                option.votes++;
+                poll.voted = true;
+
+                savePolls();
+                renderPolls();
+
+                showToast("Your demo poll vote was recorded!");
+            });
+
+            row.append(text, button);
+            card.appendChild(row);
+        });
+
+        container.appendChild(card);
+    });
+}
+
+
+// DARK MODE
+
+document.getElementById("themeToggle")
+    .addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+        const dark =
+            document.body.classList.contains("dark");
+
+        document.getElementById("themeToggle").textContent =
+            dark ? "☀ Light Mode" : "☾ Dark Mode";
+
+        localStorage.setItem(
+            "voteVistaTheme",
+            dark ? "dark" : "light"
+        );
+    });
+
+
+// RESTORE DARK MODE
+
+if (localStorage.getItem("voteVistaTheme") === "dark") {
+
+    document.body.classList.add("dark");
+
+    document.getElementById("themeToggle").textContent =
+        "☀ Light Mode";
+}
+
+
+// INITIALIZE
+
+loadResults();
+renderCandidates();
+renderResults();
+renderPolls();
+renderReceipt();
+updateTotalVotes();
+    </script>
+</body>
+</html>
